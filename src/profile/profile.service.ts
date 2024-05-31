@@ -22,7 +22,7 @@ export class ProfileService {
         age: age,
         height: height,
         weight: weight,
-        clientId: clientId
+        client: {connect: {id: clientId}}
       }
     })
   }
