@@ -1,9 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { CreateMealDto } from './dto/create-meal.dto';
-import { UpdateMealDto } from './dto/update-meal.dto';
+
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class MealService {
+
+  constructor(private readonly prisma: PrismaService){}
+
+  /*
   create(createMealDto: CreateMealDto) {
     return 'This action adds a new meal';
   }
@@ -23,4 +27,5 @@ export class MealService {
   remove(id: number) {
     return `This action removes a #${id} meal`;
   }
+  */
 }
