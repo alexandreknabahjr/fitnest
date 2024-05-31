@@ -8,7 +8,7 @@ export class UserController {
   @Post()
   async create(@Body() body) {
     try {
-      return this.userService.create(body);
+      await this.userService.create(body);
       
     } catch (error) {
       console.log(error);

@@ -5,16 +5,25 @@ import { ProfileService } from './profile.service';
 export class ProfileController {
   constructor(private readonly profileService: ProfileService) {}
 
-  /*
   @Post()
-  create(@Body() createProfileDto: CreateProfileDto) {
-    return this.profileService.create(createProfileDto);
+  async createProfile(@Body() body) {
+    try {
+      await this.profileService.createProfile(body);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   @Get()
-  findAll() {
-    return this.profileService.findAll();
+  async findAllProfiles() {
+    try {
+      return await this.profileService.findAllProfiles();
+    } catch (error) {
+      console.log(error);
+    }
   }
+
+  /*
 
   @Get(':id')
   findOne(@Param('id') id: string) {

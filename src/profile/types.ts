@@ -1,7 +1,5 @@
 import { z } from 'zod'
 
-import { CreateUserSchema } from 'src/user/types'
-
 const CreateProfileSchema = z.object({
 
     firstName: z.string(),
@@ -10,7 +8,6 @@ const CreateProfileSchema = z.object({
     weight: z.number(),
     height: z.number(),
     userId: z.string().uuid(),
-    user: CreateUserSchema
 
 })
 

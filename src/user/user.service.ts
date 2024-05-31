@@ -1,9 +1,13 @@
+// Useful imports
 import { Injectable } from '@nestjs/common';
+import { hashSync as bcryptHashSync } from 'bcrypt'
 
+// Prisma Service
 import { PrismaService } from 'src/prisma/prisma.service';
+
+// Schemas
 import { CreateUserSchema } from './types';
 
-import { hashSync as bcryptHashSync } from 'bcrypt'
 
 @Injectable()
 export class UserService {
@@ -23,8 +27,8 @@ export class UserService {
     })
   }
 
-  findAll() {
-    return this.prisma.user.findMany();
+  async findAll() {
+    return await this.prisma.user.findMany();
   }
 
   /*
