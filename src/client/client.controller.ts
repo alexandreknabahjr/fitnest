@@ -6,9 +6,9 @@ export class ClientController {
   constructor(private readonly ClientService: ClientService) {}
 
   @Post()
-  async create(@Body() body) {
+  async createClients(@Body() body) {
     try {
-      await this.ClientService.create(body);
+      await this.ClientService.createClient(body);
       
     } catch (error) {
       console.log(error);
@@ -16,9 +16,9 @@ export class ClientController {
   }
 
   @Get()
-  async findAll() {
+  async findAllClients() {
    try {
-     return this.ClientService.findAll();
+     return this.ClientService.findAllClients();
    } catch (error) {
     console.log(error);
    }

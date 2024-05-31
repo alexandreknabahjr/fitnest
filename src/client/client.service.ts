@@ -13,7 +13,7 @@ export class ClientService {
 
   constructor(private readonly prisma: PrismaService){}
 
-  async create(body: any) {
+  async createClient(body: any) {
 
     const {email, address} = CreateClientSchema.parse(body);
 
@@ -25,7 +25,7 @@ export class ClientService {
     })
   }
 
-  async findAll() {
+  async findAllClients() {
     return await this.prisma.client.findMany();
   }
 
