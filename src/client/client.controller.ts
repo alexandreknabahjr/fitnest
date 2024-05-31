@@ -24,21 +24,31 @@ export class ClientController {
    }
   }
 
-  /*
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.ClientService.findOne(+id);
+  async findClientById(@Param('id') id: string) {
+    try {
+      return await this.ClientService.findClientById(id);
+    } catch (error) {
+      console.log(error);
+    }
   }
+
+  /*
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateClientDto: UpdateClientDto) {
     return this.ClientService.update(+id, updateClientDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.ClientService.remove(+id);
-  }
   */
+  @Delete(':id')
+  async removeClientById(@Param('id') id: string) {
+    try {
+      await this.ClientService.removeClientById(id);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 }

@@ -35,9 +35,13 @@ export class ProfileController {
     return this.profileService.update(+id, updateProfileDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.profileService.remove(+id);
-  }
   */
+  @Delete(':id')
+  async removeProfileById(@Param('id') id: string) {
+    try {
+      await this.profileService.removeProfileById(id);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }

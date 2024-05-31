@@ -41,8 +41,10 @@ export class ProfileService {
     return `This action updates a #${id} profile`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} profile`;
-  }
   */
+  async removeProfileById(id: string) {
+    await this.prisma.profile.delete({
+      where: {id}
+    })
+  }
 }

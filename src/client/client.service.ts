@@ -29,18 +29,25 @@ export class ClientService {
     return await this.prisma.client.findMany();
   }
 
-  /*
-
-  findOne(id: number) {
-    return `This action returns a #${id} Client`;
+  async findClientById(id: string) {
+    return await this.prisma.client.findUnique({
+      where: {id}
+    })
   }
+
+  /*
 
   update(id: number, updateClientDto: UpdateClientDto) {
     return `This action updates a #${id} Client`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} Client`;
-  }
   */
+
+
+  async removeClientById(id: string) {
+    await this.prisma.client.delete({
+      where: {id}
+    })
+  }
+
 }

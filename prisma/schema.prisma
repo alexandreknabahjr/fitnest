@@ -47,7 +47,7 @@ model Profile{
   // Relationships:
 
   clientId             String             @unique
-  client               Client             @relation(fields: [clientId], references: [id])
+  client               Client             @relation(fields: [clientId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
 }
 
@@ -63,7 +63,7 @@ model Workout{
   // Relationships:
 
   clientId             String              @unique
-  client               Client              @relation(fields: [clientId], references: [id])
+  client               Client              @relation(fields: [clientId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
 }
 
@@ -82,6 +82,6 @@ model Meal{
   // Relationships:
 
   clientId             String              @unique
-  client               Client               @relation(fields: [clientId], references: [id])
+  client               Client               @relation(fields: [clientId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
 }
