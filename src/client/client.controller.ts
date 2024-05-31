@@ -54,7 +54,7 @@ export class ClientController {
 
 
   // Queries:
-  @Get('/profile/:id')
+  @Get('/:id/profile')
   async findClientWithProfile(@Query('id') id: string){
     try {
       return this.ClientService.findClientWithProfile(id);
