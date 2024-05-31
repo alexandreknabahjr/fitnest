@@ -1,6 +1,6 @@
 # 🥦 FitNest
 
-FitNest is an API designed to enable users to efficiently track their workout plans and meals.
+FitNest is an API designed to enable gyms to efficiently track their clients' workout plans and meals.
 
 ## 🛠️ Technologies
 

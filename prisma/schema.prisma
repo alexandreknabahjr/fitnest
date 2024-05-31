@@ -22,11 +22,12 @@ enum WorkoutType{
 
 }
 
-model User{
+model Client{
 
   id                 String              @id @default(uuid())
   email              String              @unique
-  password           String
+  address            String
+
 
   profile            Profile?
   workout            Workout[]
@@ -45,8 +46,8 @@ model Profile{
 
   // Relationships:
 
-  userId             String             @unique
-  user               User               @relation(fields: [userId], references: [id])
+  clientId             String             @unique
+  client               Client             @relation(fields: [clientId], references: [id])
 
 }
 
@@ -61,8 +62,8 @@ model Workout{
 
   // Relationships:
 
-  userId             String              @unique
-  user               User                @relation(fields: [userId], references: [id])
+  clientId             String              @unique
+  client               Client              @relation(fields: [clientId], references: [id])
 
 }
 
@@ -80,7 +81,7 @@ model Meal{
 
   // Relationships:
 
-  userId             String              @unique
-  user               User                @relation(fields: [userId], references: [id])
+  clientId             String              @unique
+  client               Client               @relation(fields: [clientId], references: [id])
 
 }
