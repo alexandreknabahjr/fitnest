@@ -43,10 +43,20 @@ export class ClientService {
 
   */
 
-
   async removeClientById(id: string) {
     await this.prisma.client.delete({
       where: {id}
+    })
+  }
+
+
+  async findClientWithProfile(id: string){
+    return await this.prisma.client.findFirst({
+      where: {id},
+      relationLoadStrategy: 'join',
+      include: {
+        profile: true
+      }
     })
   }
 

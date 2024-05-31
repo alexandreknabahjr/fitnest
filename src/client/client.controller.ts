@@ -1,10 +1,11 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { ClientService } from './client.service';
 
 @Controller('client')
 export class ClientController {
   constructor(private readonly ClientService: ClientService) {}
 
+  // Basic CRUD operations:
   @Post()
   async createClients(@Body() body) {
     try {
@@ -46,6 +47,17 @@ export class ClientController {
   async removeClientById(@Param('id') id: string) {
     try {
       await this.ClientService.removeClientById(id);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
+  // Queries:
+  @Get('/profile/:id')
+  async findClientWithProfile(@Query('id') id: string){
+    try {
+      return this.ClientService.findClientWithProfile(id);
     } catch (error) {
       console.log(error);
     }
