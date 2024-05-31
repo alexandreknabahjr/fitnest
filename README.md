@@ -15,7 +15,7 @@ FitNest is an API designed to enable users to efficiently track their workout pl
 
 * POST/user - It creates a new user
 
-## 📋 Profile
+### 📋 Profile
 
 ### 🏋️‍♂️ Workout
 
