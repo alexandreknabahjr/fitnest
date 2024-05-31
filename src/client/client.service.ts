@@ -54,9 +54,19 @@ export class ClientService {
     return await this.prisma.client.findFirst({
       where: {id},
       relationLoadStrategy: 'join',
-      include: {
-        profile: true
+      select: {
+        email: true,
+        profile: {
+          select: {
+            firstName: true,
+            lastName: true,
+            age: true,
+            height: true,
+            weight: true
+          }
+        }
       }
+      
     })
   }
 
