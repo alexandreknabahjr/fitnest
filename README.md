@@ -9,15 +9,3 @@ FitNest is an API designed to enable users to efficiently track their workout pl
 * 💎 Zod: TypeScript-first schema validation with static type inference;
 * 🗂️ PostgreSQL: a powerful, open source object-relational database system.
 
-## 🔀 API Endpoints
-
-### 👨🏻‍💻 User
-
-* POST/user - It creates a new user
-
-### 📋 Profile
-
-### 🏋️‍♂️ Workout
-
-### 🍽️ Meal
-
