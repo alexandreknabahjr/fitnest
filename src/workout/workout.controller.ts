@@ -1,20 +1,34 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpException } from '@nestjs/common';
 import { WorkoutService } from './workout.service';
 
 @Controller('workout')
 export class WorkoutController {
   constructor(private readonly workoutService: WorkoutService) {}
 
-  /*
   @Post()
-  create(@Body() createWorkoutDto: CreateWorkoutDto) {
-    return this.workoutService.create(createWorkoutDto);
+  async createWorkout(@Body() body) {
+    try {
+      await this.workoutService.createWorkout(body);
+    } catch (error) {
+      if(error instanceof HttpException){
+        throw error;
+      }
+    }
   }
 
+
   @Get()
-  findAll() {
-    return this.workoutService.findAll();
+  async findAllfindAllWorkouts() {
+    try {
+      return await this.workoutService.findAllWorkouts();
+    } catch (error) {
+      console.log(error);
+    }
   }
+
+  /*
+
+  /*
 
   @Get(':id')
   findOne(@Param('id') id: string) {

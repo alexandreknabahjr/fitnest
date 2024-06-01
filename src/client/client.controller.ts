@@ -21,7 +21,7 @@ export class ClientController {
   @Get()
   async findAllClients() {
    try {
-     return this.ClientService.findAllClients();
+     return await this.ClientService.findAllClients();
    } catch (error) {
     console.log(error);
    }
@@ -69,9 +69,9 @@ export class ClientController {
   }
 
   @Get('/:id/profile')
-  async findClientWithProfile(@Query('id') id: string){
+  async findClientWithInfo(@Query('id') id: string){
     try {
-      return await this.ClientService.findClientWithProfile(id);
+      return await this.ClientService.findClientWithInfo(id);
     } catch (error) {
       console.log(error);
     }

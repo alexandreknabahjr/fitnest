@@ -81,7 +81,7 @@ export class ClientService {
     return client;
   }
 
-  async findClientWithProfile(id: string){
+  async findClientWithInfo(id: string){
     return await this.prisma.client.findFirst({
       where: {id},
       relationLoadStrategy: 'join',
@@ -96,7 +96,18 @@ export class ClientService {
             height: true,
             weight: true
           }
+
+        },
+
+        workout : {
+          select : {
+            name: true,
+            duration: true,
+            date: true,
+            workoutType: true
+          }
         }
+
       }
       
     })
