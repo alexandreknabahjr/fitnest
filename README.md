@@ -2,7 +2,7 @@
 
 FitNest is an API designed to enable gyms to efficiently track their clients' workout plans and meals.
 
-## 🛠️ Technologies
+## 👨🏻‍💻 Built With
 
 * 🔴 NestJS: a framework for building efficient, scalable Node.js web applications;
 * △ Prisma: a next-generation object–relational mapper (ORM);

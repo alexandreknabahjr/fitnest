@@ -41,7 +41,10 @@ export class ClientController {
     try {
       return await this.ClientService.updateClientInformation(id, body);
     } catch (error) {
-      console.log(error);
+      if (error instanceof HttpException) {
+        throw error;
+      }
+      throw new HttpException('Internal Server Error', HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 
