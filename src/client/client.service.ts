@@ -16,7 +16,13 @@ export class ClientService {
   // Basic CRUD operations:
   async createClient(body: any) {
 
-    const {email, address,} = ClientSchema.parse(body);
+    const {email, address} = ClientSchema.parse(body);
+
+    const clientRegistered = await this.findClientByEmail(email).catch(() => null);
+
+    if(clientRegistered){
+      throw new HttpException(`Client already exist in our system...`, HttpStatus.CONFLICT);
+    }
 
     await this.prisma.client.create({
       data: {
@@ -36,8 +42,6 @@ export class ClientService {
       where: {id}
     })
   }
-
-
 
   async updateClientInformation(id: string, body: any) {
     const {email, address} = ClientSchema.parse(body);
@@ -65,6 +69,18 @@ export class ClientService {
   }
 
   // Queries:
+  async findClientByEmail(email: string){
+    const client = await this.prisma.client.findFirst({
+      where: {email: email}
+    })
+
+    if(!client){
+      return null;
+    }
+
+    return client;
+  }
+
   async findClientWithProfile(id: string){
     return await this.prisma.client.findFirst({
       where: {id},
