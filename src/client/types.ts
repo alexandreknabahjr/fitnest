@@ -1,12 +1,14 @@
 import { z } from 'zod'
 
-const CreateClientSchema = z.object({
+const ClientSchema = z.object({
 
     email: z.string().email(),
-    address: z.string()
-    
+    address: z.string(),
+
 })
 
 export {
-    CreateClientSchema
+
+    ClientSchema
+    
 }

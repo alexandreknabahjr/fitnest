@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-const CreateProfileSchema = z.object({
+const ProfileSchema = z.object({
 
     firstName: z.string(),
     lastName: z.string(),
@@ -12,5 +12,5 @@ const CreateProfileSchema = z.object({
 })
 
 export {
-    CreateProfileSchema
+    ProfileSchema
 }

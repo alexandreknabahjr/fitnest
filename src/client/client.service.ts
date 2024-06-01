@@ -1,11 +1,11 @@
 // Useful imports
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 
 // Prisma Service
 import { PrismaService } from 'src/prisma/prisma.service';
 
 // Schemas
-import { CreateClientSchema } from './types';
+import { ClientSchema } from './types';
 
 
 @Injectable()
@@ -13,9 +13,10 @@ export class ClientService {
 
   constructor(private readonly prisma: PrismaService){}
 
+  // Basic CRUD operations:
   async createClient(body: any) {
 
-    const {email, address} = CreateClientSchema.parse(body);
+    const {email, address,} = ClientSchema.parse(body);
 
     await this.prisma.client.create({
       data: {
@@ -23,6 +24,7 @@ export class ClientService {
         address: address
       }
     })
+  
   }
 
   async findAllClients() {
@@ -35,13 +37,26 @@ export class ClientService {
     })
   }
 
-  /*
 
-  update(id: number, updateClientDto: UpdateClientDto) {
-    return `This action updates a #${id} Client`;
+
+  async updateClientInformation(id: string, body: any) {
+    const {email, address} = ClientSchema.parse(body);
+
+    const clientFound = await this.findClientById(id);
+
+    if(!clientFound){
+      return new HttpException(`Client with id ${id} was not found...`, HttpStatus.NOT_FOUND);
+    }
+
+    await this.prisma.client.update({
+      where: {id},
+      data: {
+        email: email,
+        address: address
+      }
+    })
+
   }
-
-  */
 
   async removeClientById(id: string) {
     await this.prisma.client.delete({
@@ -49,13 +64,14 @@ export class ClientService {
     })
   }
 
-
+  // Queries:
   async findClientWithProfile(id: string){
     return await this.prisma.client.findFirst({
       where: {id},
       relationLoadStrategy: 'join',
       select: {
         email: true,
+
         profile: {
           select: {
             firstName: true,

@@ -5,7 +5,7 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 // Schemas
-import { CreateProfileSchema } from './types';
+import { ProfileSchema } from './types';
 
 @Injectable()
 export class ProfileService {
@@ -13,7 +13,7 @@ export class ProfileService {
   constructor(private readonly prisma: PrismaService){}
 
   async createProfile(body: any) {
-    const {firstName, lastName, age, height, weight, clientId} = CreateProfileSchema.parse(body);
+    const {firstName, lastName, age, height, weight, clientId} = ProfileSchema.parse(body);
 
     await this.prisma.profile.create({
       data: {

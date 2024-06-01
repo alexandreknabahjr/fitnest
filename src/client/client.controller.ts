@@ -25,7 +25,6 @@ export class ClientController {
    }
   }
 
-
   @Get(':id')
   async findClientById(@Param('id') id: string) {
     try {
@@ -35,14 +34,15 @@ export class ClientController {
     }
   }
 
-  /*
-
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateClientDto: UpdateClientDto) {
-    return this.ClientService.update(+id, updateClientDto);
+  updateClientInformation(@Param('id') id: string, @Body() body) {
+    try {
+      return this.ClientService.updateClientInformation(id, body);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  */
   @Delete(':id')
   async removeClientById(@Param('id') id: string) {
     try {
@@ -51,7 +51,6 @@ export class ClientController {
       console.log(error);
     }
   }
-
 
   // Queries:
   @Get('/:id/profile')
