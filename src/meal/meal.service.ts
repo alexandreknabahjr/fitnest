@@ -25,8 +25,8 @@ export class MealService {
     })
   }
 
-  findAllMeals() {
-    return this.prisma.meal.findMany({
+  async findAllMeals() {
+    return await this.prisma.meal.findMany({
       select: {
         foods: true,
         calories: true,
