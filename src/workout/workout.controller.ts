@@ -16,7 +16,6 @@ export class WorkoutController {
     }
   }
 
-
   @Get()
   async findAllfindAllWorkouts() {
     try {
@@ -26,23 +25,12 @@ export class WorkoutController {
     }
   }
 
-  /*
-
-  /*
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.workoutService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateWorkoutDto: UpdateWorkoutDto) {
-    return this.workoutService.update(+id, updateWorkoutDto);
-  }
-
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.workoutService.remove(+id);
+  async removeWorkout(@Param('id') id: string) {
+    try {
+      await this.workoutService.removeWorkout(id);
+    } catch (error) {
+      console.log(error)
+    }
   }
-  */
 }

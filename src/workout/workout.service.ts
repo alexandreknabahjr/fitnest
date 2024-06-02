@@ -22,10 +22,10 @@ export class WorkoutService {
     })
   }
 
-
   async findAllWorkouts() {
     return await this.prisma.workout.findMany({
       select: {
+        id: true,
         name: true,
         duration: true,
         date: true,
@@ -45,15 +45,10 @@ export class WorkoutService {
     })
   }
 
-  /*
-
-  update(id: number, updateWorkoutDto: UpdateWorkoutDto) {
-    return `This action updates a #${id} workout`;
+  async removeWorkout(id: string) {
+    await this.prisma.workout.delete({
+      where: {id}
+    })
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} workout`;
-  }
-
-  */
 }
