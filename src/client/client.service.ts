@@ -106,6 +106,17 @@ export class ClientService {
             date: true,
             workoutType: true
           }
+        },
+
+        meals: {
+          select: {
+            foods: true,
+            calories: true,
+            carbs: true,
+            protein: true,
+            fats: true,
+            date: true
+          }
         }
 
       }

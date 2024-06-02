@@ -1,34 +1,28 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpException } from '@nestjs/common';
 import { MealService } from './meal.service';
 
 @Controller('meal')
 export class MealController {
   constructor(private readonly mealService: MealService) {}
 
-  /*
   @Post()
-  create(@Body() createMealDto: CreateMealDto) {
-    return this.mealService.create(createMealDto);
+  async create(@Body() body) {
+    try {
+      await this.mealService.createMeal(body);
+    } catch (error) {
+      if(error instanceof HttpException){
+        return error;
+      }
+    }
   }
-
+  
   @Get()
-  findAll() {
-    return this.mealService.findAll();
+  async findAllMeals() {
+    try {
+      return await this.mealService.findAllMeals();
+    } catch (error) {
+      console.log(error);
+    }
   }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.mealService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateMealDto: UpdateMealDto) {
-    return this.mealService.update(+id, updateMealDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.mealService.remove(+id);
-  }
-  */
+  
 }
