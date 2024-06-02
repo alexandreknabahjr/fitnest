@@ -20,6 +20,7 @@ export class WorkoutService {
         client: {connect: {id: clientId}}
       }
     })
+    
   }
 
   async findAllWorkouts() {
