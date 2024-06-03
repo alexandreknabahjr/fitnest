@@ -7,7 +7,7 @@ const WorkoutSchema = z.object({
     duration: z.number().int(),
     date: z.string().datetime(),
     workoutType: z.nativeEnum(WorkoutType),
-    clientId: z.string().uuid()
+    customerId: z.string().uuid()
     
 })
 

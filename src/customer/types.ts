@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-const ClientSchema = z.object({
+const CustomerSchema = z.object({
 
     email: z.string().email(),
     address: z.string(),
@@ -9,6 +9,6 @@ const ClientSchema = z.object({
 
 export {
 
-    ClientSchema
+    CustomerSchema
     
 }

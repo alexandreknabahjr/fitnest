@@ -5,26 +5,26 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service'
 
 // Schemas
-import { ClientSchema } from './types';
+import { CustomerSchema } from './types';
 
 
 @Injectable()
-export class ClientService {
+export class CustomerService {
 
   constructor(private readonly prisma: PrismaService){}
 
   // Basic CRUD operations:
-  async createClient(body: any) {
+  async createCustomer(body: any) {
 
-    const {email, address} = ClientSchema.parse(body);
+    const {email, address} = CustomerSchema.parse(body);
 
-    const clientRegistered = await this.findClientByEmail(email).catch(() => null);
+    const customerRegistered = await this.findCustomerByEmail(email).catch(() => null);
 
-    if(clientRegistered){
-      throw new HttpException(`Client already exist in our system...`, HttpStatus.CONFLICT);
+    if(customerRegistered){
+      throw new HttpException(`Customer already exist in our system...`, HttpStatus.CONFLICT);
     }
 
-    await this.prisma.client.create({
+    await this.prisma.customer.create({
       data: {
         email: email,
         address: address
@@ -33,26 +33,26 @@ export class ClientService {
   
   }
 
-  async findAllClients() {
-    return await this.prisma.client.findMany();
+  async findAllCustomers() {
+    return await this.prisma.customer.findMany();
   }
 
-  async findClientById(id: string) {
-    return await this.prisma.client.findUnique({
+  async findCustomerById(id: string) {
+    return await this.prisma.customer.findUnique({
       where: {id}
     })
   }
 
-  async updateClientInformation(id: string, body: any) {
-    const {email, address} = ClientSchema.parse(body);
+  async updateCustomerInformation(id: string, body: any) {
+    const {email, address} = CustomerSchema.parse(body);
 
-    const clientFound = await this.findClientById(id);
+    const customerFound = await this.findCustomerById(id);
 
-    if(!clientFound){
-      return new HttpException(`Client with id ${id} was not found...`, HttpStatus.NOT_FOUND);
+    if(!customerFound){
+      return new HttpException(`Customer with id ${id} was not found...`, HttpStatus.NOT_FOUND);
     }
 
-    await this.prisma.client.update({
+    await this.prisma.customer.update({
       where: {id},
       data: {
         email: email,
@@ -62,27 +62,27 @@ export class ClientService {
 
   }
 
-  async removeClientById(id: string) {
-    await this.prisma.client.delete({
+  async removeCustomerById(id: string) {
+    await this.prisma.customer.delete({
       where: {id}
     })
   }
 
   // Queries:
-  async findClientByEmail(email: string){
-    const client = await this.prisma.client.findFirst({
+  async findCustomerByEmail(email: string){
+    const customer = await this.prisma.customer.findFirst({
       where: {email: email}
     })
 
-    if(!client){
+    if(!customer){
       return null;
     }
 
-    return client;
+    return customer;
   }
 
-  async findClientWithInfo(id: string){
-    return await this.prisma.client.findFirst({
+  async findCustomerWithInfo(id: string){
+    return await this.prisma.customer.findFirst({
       where: {id},
       relationLoadStrategy: 'join',
       select: {

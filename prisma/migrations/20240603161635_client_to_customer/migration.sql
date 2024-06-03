@@ -2,12 +2,12 @@
 CREATE TYPE "WorkoutType" AS ENUM ('CARDIO', 'STRENGTH', 'CROSSFIT', 'FLEXIBILITY');
 
 -- CreateTable
-CREATE TABLE "Client" (
+CREATE TABLE "Customer" (
     "id" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "address" TEXT NOT NULL,
 
-    CONSTRAINT "Client_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "Customer_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -18,7 +18,7 @@ CREATE TABLE "Profile" (
     "age" INTEGER NOT NULL,
     "weight" INTEGER NOT NULL,
     "height" INTEGER NOT NULL,
-    "clientId" TEXT NOT NULL,
+    "customerId" TEXT NOT NULL,
 
     CONSTRAINT "Profile_pkey" PRIMARY KEY ("id")
 );
@@ -30,7 +30,7 @@ CREATE TABLE "Workout" (
     "duration" INTEGER NOT NULL,
     "date" TIMESTAMP(3) NOT NULL,
     "workoutType" "WorkoutType" NOT NULL,
-    "clientId" TEXT NOT NULL,
+    "customerId" TEXT NOT NULL,
 
     CONSTRAINT "Workout_pkey" PRIMARY KEY ("id")
 );
@@ -44,28 +44,22 @@ CREATE TABLE "Meal" (
     "protein" DOUBLE PRECISION,
     "fats" DOUBLE PRECISION,
     "date" TIMESTAMP(3) NOT NULL,
-    "clientId" TEXT NOT NULL,
+    "customerId" TEXT NOT NULL,
 
     CONSTRAINT "Meal_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Client_email_key" ON "Client"("email");
+CREATE UNIQUE INDEX "Customer_email_key" ON "Customer"("email");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Profile_clientId_key" ON "Profile"("clientId");
-
--- CreateIndex
-CREATE UNIQUE INDEX "Workout_clientId_key" ON "Workout"("clientId");
-
--- CreateIndex
-CREATE UNIQUE INDEX "Meal_clientId_key" ON "Meal"("clientId");
+CREATE UNIQUE INDEX "Profile_customerId_key" ON "Profile"("customerId");
 
 -- AddForeignKey
-ALTER TABLE "Profile" ADD CONSTRAINT "Profile_clientId_fkey" FOREIGN KEY ("clientId") REFERENCES "Client"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Profile" ADD CONSTRAINT "Profile_customerId_fkey" FOREIGN KEY ("customerId") REFERENCES "Customer"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Workout" ADD CONSTRAINT "Workout_clientId_fkey" FOREIGN KEY ("clientId") REFERENCES "Client"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Workout" ADD CONSTRAINT "Workout_customerId_fkey" FOREIGN KEY ("customerId") REFERENCES "Customer"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Meal" ADD CONSTRAINT "Meal_clientId_fkey" FOREIGN KEY ("clientId") REFERENCES "Client"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Meal" ADD CONSTRAINT "Meal_customerId_fkey" FOREIGN KEY ("customerId") REFERENCES "Customer"("id") ON DELETE CASCADE ON UPDATE CASCADE;

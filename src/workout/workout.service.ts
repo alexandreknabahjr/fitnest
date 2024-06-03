@@ -9,7 +9,7 @@ export class WorkoutService {
   constructor(private readonly prisma: PrismaService){}
 
   async createWorkout(body: any) {
-    const {name, duration, date, workoutType, clientId} = WorkoutSchema.parse(body);
+    const {name, duration, date, workoutType, customerId} = WorkoutSchema.parse(body);
 
     return await this.prisma.workout.create({
       data: {
@@ -17,7 +17,7 @@ export class WorkoutService {
         duration: duration,
         date: date,
         workoutType: workoutType,
-        client: {connect: {id: clientId}}
+        customer: {connect: {id: customerId}}
       }
     })
     
@@ -31,13 +31,13 @@ export class WorkoutService {
         duration: true,
         date: true,
         workoutType: true,
-        client: {
+        customer: {
           select: {
             profile : {
               select : {
                 firstName: true,
                 lastName: true,
-                clientId: true
+                customerId: true
               }
             }
           }

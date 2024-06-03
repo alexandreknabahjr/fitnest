@@ -1,15 +1,15 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, Query, HttpException, HttpStatus } from '@nestjs/common';
-import { ClientService } from './client.service';
+import { CustomerService } from './customer.service';
 
-@Controller('client')
-export class ClientController {
-  constructor(private readonly ClientService: ClientService) {}
+@Controller('customer')
+export class CustomerController {
+  constructor(private readonly CustomerService: CustomerService) {}
 
   // Basic CRUD operations:
   @Post()
-  async createClients(@Body() body) {
+  async createCustomers(@Body() body) {
     try {
-      await this.ClientService.createClient(body);
+      await this.CustomerService.createCustomer(body);
     } catch (error) {
       if (error instanceof HttpException) {
         throw error;
@@ -19,27 +19,27 @@ export class ClientController {
   }
 
   @Get()
-  async findAllClients() {
+  async findAllCustomers() {
    try {
-     return await this.ClientService.findAllClients();
+     return await this.CustomerService.findAllCustomers();
    } catch (error) {
     console.log(error);
    }
   }
 
   @Get(':id')
-  async findClientById(@Param('id') id: string) {
+  async findCustomerById(@Param('id') id: string) {
     try {
-      return await this.ClientService.findClientById(id);
+      return await this.CustomerService.findCustomerById(id);
     } catch (error) {
       console.log(error);
     }
   }
 
   @Patch(':id')
-  async updateClientInformation(@Param('id') id: string, @Body() body) {
+  async updateCustomerInformation(@Param('id') id: string, @Body() body) {
     try {
-      return await this.ClientService.updateClientInformation(id, body);
+      return await this.CustomerService.updateCustomerInformation(id, body);
     } catch (error) {
       if (error instanceof HttpException) {
         throw error;
@@ -49,9 +49,9 @@ export class ClientController {
   }
 
   @Delete(':id')
-  async removeClientById(@Param('id') id: string) {
+  async removeCustomerById(@Param('id') id: string) {
     try {
-      await this.ClientService.removeClientById(id);
+      await this.CustomerService.removeCustomerById(id);
     } catch (error) {
       console.log(error);
     }
@@ -59,9 +59,9 @@ export class ClientController {
 
   // Queries:
   @Get(':email')
-  async findClientByEmail(@Query('email') email: string){
+  async findCustomerByEmail(@Query('email') email: string){
     try {
-      return this.ClientService.findClientByEmail(email);
+      return this.CustomerService.findCustomerByEmail(email);
     } catch (error) {
       console.log(error)
     }
@@ -69,9 +69,9 @@ export class ClientController {
   }
 
   @Get('/:id/profile')
-  async findClientWithInfo(@Query('id') id: string){
+  async findCustomerWithInfo(@Query('id') id: string){
     try {
-      return await this.ClientService.findClientWithInfo(id);
+      return await this.CustomerService.findCustomerWithInfo(id);
     } catch (error) {
       console.log(error);
     }

@@ -13,7 +13,7 @@ export class ProfileService {
   constructor(private readonly prisma: PrismaService){}
 
   async createProfile(body: any) {
-    const {firstName, lastName, age, height, weight, clientId} = ProfileSchema.parse(body);
+    const {firstName, lastName, age, height, weight, customerId} = ProfileSchema.parse(body);
 
     await this.prisma.profile.create({
       data: {
@@ -22,7 +22,7 @@ export class ProfileService {
         age: age,
         height: height,
         weight: weight,
-        client: {connect: {id: clientId}}
+        customer: {connect: {id: customerId}}
       }
     })
   }

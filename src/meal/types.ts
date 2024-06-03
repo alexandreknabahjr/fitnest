@@ -7,7 +7,7 @@ const MealSchema = z.object({
     protein: z.number().positive().optional(),
     fats: z.number().positive().optional(),
     date: z.string().datetime(),
-    clientId: z.string().uuid()
+    customerId: z.string().uuid()
 })
 
 export {

@@ -7,7 +7,7 @@ const ProfileSchema = z.object({
     age: z.number().int(),
     weight: z.number(),
     height: z.number(),
-    clientId: z.string().uuid(),
+    customerId: z.string().uuid(),
 
 })
 

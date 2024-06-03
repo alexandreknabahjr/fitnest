@@ -10,7 +10,7 @@ export class MealService {
 
   async createMeal(body: any) {
 
-    const {foods, calories, carbs, protein, fats, date, clientId} = MealSchema.parse(body);
+    const {foods, calories, carbs, protein, fats, date, customerId} = MealSchema.parse(body);
 
     await this.prisma.meal.create({
       data: {
@@ -20,7 +20,7 @@ export class MealService {
         protein: protein,
         fats: fats,
         date: date,
-        client: {connect: {id: clientId}}
+        customer: {connect: {id: customerId}}
       }
     })
   }
@@ -34,7 +34,7 @@ export class MealService {
         protein: true,
         fats: true,
         date: true,
-        client : {
+        customer : {
           select: {
             profile: {
               select: {

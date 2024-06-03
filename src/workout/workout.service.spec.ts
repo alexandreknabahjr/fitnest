@@ -17,7 +17,7 @@ describe('WorkoutService', () => {
               duration: 60,
               date: "2023-06-03T09:00:00Z",
               workoutType: "CROSSFIT",
-              clientId: "22911902-a8c5-4ead-b562-b0f8865e95c3"
+              customerId: "22911902-a8c5-4ead-b562-b0f8865e95c3"
             })
           }
         }
@@ -38,7 +38,7 @@ describe('WorkoutService', () => {
           duration: 60,
           date: "2023-06-03T09:00:00Z",
           workoutType: "CROSSFIT",
-          clientId: "22911902-a8c5-4ead-b562-b0f8865e95c3"
+          customerId: "22911902-a8c5-4ead-b562-b0f8865e95c3"
       }
 
       const workoutResult = await service.createWorkout(newWorkout);
@@ -48,7 +48,7 @@ describe('WorkoutService', () => {
         duration: 60,
         date: "2023-06-03T09:00:00Z",
         workoutType: "CROSSFIT",
-        clientId: "22911902-a8c5-4ead-b562-b0f8865e95c3"
+        customerId: "22911902-a8c5-4ead-b562-b0f8865e95c3"
       });
 
     })
