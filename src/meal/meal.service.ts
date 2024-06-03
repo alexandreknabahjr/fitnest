@@ -12,7 +12,7 @@ export class MealService {
 
     const {foods, calories, carbs, protein, fats, date, customerId} = MealSchema.parse(body);
 
-    await this.prisma.meal.create({
+    return await this.prisma.meal.create({
       data: {
         foods: foods,
         calories: calories,

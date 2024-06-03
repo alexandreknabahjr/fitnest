@@ -8,7 +8,7 @@ export class MealController {
   @Post()
   async create(@Body() body) {
     try {
-      await this.mealService.createMeal(body);
+      return await this.mealService.createMeal(body);
     } catch (error) {
       if(error instanceof HttpException){
         return error;
