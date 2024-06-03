@@ -60,10 +60,10 @@ describe('WorkoutService', () => {
 
       const response = await service.findAllWorkouts();
 
-      expect(response).toBe(fakeWorkout);
+      expect(response).toEqual(fakeWorkout);
       expect(prisma.workout.findMany).toHaveBeenCalledTimes(1);
     })
-  })
+  });
 
-  
+
 });

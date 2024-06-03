@@ -8,7 +8,7 @@ export class ProfileController {
   @Post()
   async createProfile(@Body() body) {
     try {
-      await this.profileService.createProfile(body);
+      return await this.profileService.createProfile(body);
     } catch (error) {
       console.log(error);
     }

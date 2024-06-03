@@ -15,7 +15,7 @@ export class ProfileService {
   async createProfile(body: any) {
     const {firstName, lastName, age, height, weight, customerId} = ProfileSchema.parse(body);
 
-    await this.prisma.profile.create({
+    return await this.prisma.profile.create({
       data: {
         firstName: firstName,
         lastName: lastName,
