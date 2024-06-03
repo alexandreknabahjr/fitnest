@@ -1,6 +1,6 @@
 # 🥦 FitNest
 
-FitNest is an API designed to enable gyms to efficiently track their clients' workout plans and meals.
+FitNest is an API designed to enable gyms to efficiently track their customers' workout plans and meals.
 
 ## 👨🏻‍💻 Built With
 
@@ -14,10 +14,10 @@ FitNest is an API designed to enable gyms to efficiently track their clients' wo
 
 ### 🏋🏻‍♀️ Customer:
 
-* We add a client to the system. Note: the client won't be added if their email address exists in the gym's database.
-* We retrieve a list of all the gym's clients;
-* We find a client through their ID;
-* We update a client based on their email and address;
-* We remove a client based on their ID;
-* We retrieve a list of the gym's clients along with their information (workouts, meals, profile).
+* We add a customer to the system. Note: the customer won't be added if their email address exists in the gym's database.
+* We retrieve a list of all the gym's customers;
+* We find a customer through their ID;
+* We update a customer based on their email and address;
+* We remove a customer based on their ID;
+* We retrieve a list of the gym's customers along with their information (workouts, meals, profile).
 
