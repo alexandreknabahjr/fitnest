@@ -11,7 +11,7 @@ export class WorkoutService {
   async createWorkout(body: any) {
     const {name, duration, date, workoutType, clientId} = WorkoutSchema.parse(body);
 
-    await this.prisma.workout.create({
+    return await this.prisma.workout.create({
       data: {
         name: name,
         duration: duration,

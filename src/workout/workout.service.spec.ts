@@ -10,7 +10,17 @@ describe('WorkoutService', () => {
       providers: [WorkoutService],
     }).useMocker((token) => {
       if(token === PrismaService){
-        return {}
+        return {
+          workout: {
+            create: jest.fn().mockResolvedValue({
+              name: "Crossfit Session I",
+              duration: 60,
+              date: "2023-06-03T09:00:00Z",
+              workoutType: "CROSSFIT",
+              clientId: "22911902-a8c5-4ead-b562-b0f8865e95c3"
+            })
+          }
+        }
       }
     }).compile();
 
@@ -20,6 +30,29 @@ describe('WorkoutService', () => {
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
+
+  describe('createWorkout', () => {
+    it('should create a workout', async () => {
+      const newWorkout = {
+          name: "Crossfit Session I",
+          duration: 60,
+          date: "2023-06-03T09:00:00Z",
+          workoutType: "CROSSFIT",
+          clientId: "22911902-a8c5-4ead-b562-b0f8865e95c3"
+      }
+
+      const workoutResult = await service.createWorkout(newWorkout);
+
+      expect(workoutResult).toEqual({
+        name: "Crossfit Session I",
+        duration: 60,
+        date: "2023-06-03T09:00:00Z",
+        workoutType: "CROSSFIT",
+        clientId: "22911902-a8c5-4ead-b562-b0f8865e95c3"
+      });
+
+    })
+  })
 
   
 });

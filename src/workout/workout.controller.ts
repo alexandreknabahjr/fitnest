@@ -8,7 +8,7 @@ export class WorkoutController {
   @Post()
   async createWorkout(@Body() body) {
     try {
-      await this.workoutService.createWorkout(body);
+      return await this.workoutService.createWorkout(body);
     } catch (error) {
       if(error instanceof HttpException){
         throw error;
