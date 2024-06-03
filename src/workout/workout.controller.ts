@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, HttpException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, HttpException } from '@nestjs/common';
 import { WorkoutService } from './workout.service';
 
 @Controller('workout')

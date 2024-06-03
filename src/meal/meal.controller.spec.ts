@@ -1,6 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { MealController } from './meal.controller';
 import { MealService } from './meal.service';
+import { PrismaService } from '../prisma/prisma.service';
 
 describe('MealController', () => {
   let controller: MealController;
@@ -9,6 +10,10 @@ describe('MealController', () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [MealController],
       providers: [MealService],
+    }).useMocker((token) => {
+      if(token === PrismaService){
+        return {}
+      }
     }).compile();
 
     controller = module.get<MealController>(MealController);
