@@ -10,9 +10,9 @@ FitNest is an API designed to enable gyms to efficiently track their clients' wo
 * 🗂️ PostgreSQL: a powerful, open source object-relational database system;
 * 🔮 Insomnia: API Client for REST, GraphQL, GRPC and OpenAPI design tool for developers
 
-## What has been implemented so far
+## ✅ What has been implemented so far
 
-### Client:
+### 🏋🏻‍♀️ Client:
 
 * We add a client to the system. Note: the client won't be added if their email address exists in the gym's database.
 * We retrieve a list of all the gym's clients;
